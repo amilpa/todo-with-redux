@@ -14,8 +14,11 @@ const Add = () => {
 
 	const handleClick = (event) => {
 		event.preventDefault()
-		dispatch(addTodo({text : input}))
-		setInput('')
+		if(input)
+		{
+			dispatch(addTodo({text : input}))
+			setInput('')
+		}
 	}
 
 	return (

@@ -1,0 +1,35 @@
+.list{
+	transition: 5s;
+}
+
+/* .card{ */
+/* 	animation: animate 1s ease-in-out; */
+/* } */
+
+.cards-enter{
+	opacity: 0;
+}
+
+.cards-enter-active{
+	opacity: 1;
+	transition: 0.5s;
+}
+
+.cards-exit{
+	opacity: 1;
+	transition: 0.5s;
+}
+
+.cards-exit-active{
+	opacity: 0;
+	translate: 0px -5px;
+}
+
+@keyframes animate{
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}

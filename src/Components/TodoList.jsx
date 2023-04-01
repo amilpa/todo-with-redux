@@ -1,23 +1,31 @@
 
-import React from 'react'
+import React,{ createRef } from 'react';
 
-import TodoCard from './TodoCard'
+import TodoCard from './TodoCard';
 
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import { CSSTransition,TransitionGroup } from 'react-transition-group';
 
-import { useAutoAnimate } from '@formkit/auto-animate/react'
+import './Card.css'
 
 const TodoList = () => {
 
-	const [ref] = useAutoAnimate()
-
-	const todos = useSelector((state) => state.todos)
+	const todos = useSelector((state) => state.todos );
 
 	return (
-		<div ref={ ref }>
-			{todos.map((value) => {
-				return <TodoCard id={ value.id } text = { value.text } completed = { value.completed } key={ value.id }/>
-			})}
+		<div className='list'>
+			<TransitionGroup>
+				{todos.map((value) => {
+
+					const nodeRef = createRef(null)
+
+					return (
+						<CSSTransition nodeRef={ nodeRef } key={ value.id } classNames='cards' timeout={ 500 }>
+							<TodoCard reference={ nodeRef } id={ value.id } text = { value.text } completed = { value.completed } key={ value.id }/>
+						</CSSTransition>
+					)
+				})}
+			</TransitionGroup>
 		</div>
 	)
 }
